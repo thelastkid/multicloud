@@ -1,0 +1,2 @@
+[console_scripts]
+policy-engine = policy_engine.api.cli:cli
