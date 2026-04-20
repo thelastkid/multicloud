@@ -2,8 +2,8 @@
 from typing import Dict, Any, List, Optional
 from enum import Enum
 
-from ..core.decision_context import DecisionContext
-from ..utils.logger import get_logger
+from core.decision_context import DecisionContext
+from utils.logger import get_logger
 
 
 class ComplianceFramework(Enum):

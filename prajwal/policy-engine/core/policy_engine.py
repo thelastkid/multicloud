@@ -7,9 +7,9 @@ from enum import Enum
 
 from .decision_context import DecisionContext, TaskContext, ResourceContext, ComplianceContext
 from .policy_parser import PolicyParser, PolicyRule, PolicyParseError
-from ..utils.logger import get_logger
-from ..utils.metrics import DecisionMetrics, MetricsCollector
-from ..utils.validators import ValidationError
+from utils.logger import get_logger
+from utils.metrics import DecisionMetrics, MetricsCollector
+from utils.validators import ValidationError
 
 
 class DecisionStatus(Enum):

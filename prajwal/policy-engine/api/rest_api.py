@@ -1,12 +1,16 @@
 """REST API for policy engine."""
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../")))
 from flask import Flask, request, jsonify
 from typing import Dict, Any
 import logging
-
-from . import MLOpsPolicyEngine
-from ..utils.logger import get_logger
-from ..utils.request_validator import RequestValidator
-from ..modules.deployment_connector import DeploymentConnector
+from core.decision_context import DecisionContext
+from core.policy_engine import PolicyEngine
+from utils.logger import get_logger
+from utils.request_validator import RequestValidator
+from modules.deployment_connector import DeploymentConnector
 
 
 class PolicyEngineAPI:
@@ -15,7 +19,7 @@ class PolicyEngineAPI:
     def __init__(self, port: int = 5000):
         self.app = Flask(__name__)
         self.port = port
-        self.engine = MLOpsPolicyEngine()
+        self.engine = PolicyEngine()
         self.deployment_connector = DeploymentConnector()
         self.logger = get_logger("PolicyEngineAPI")
         self.validator = RequestValidator()
@@ -35,6 +39,12 @@ class PolicyEngineAPI:
             """Evaluate a task against policies."""
             try:
                 data = request.json
+                from priyanka.model import predict
+                img_path = data.get("image_path")
+
+                if not img_path:
+                   return jsonify({"error": "image_path is required"}), 400
+                prediction = predict(img_path)
                 
                 # Validate required fields
                 required = ['task_id', 'task_type', 'user_id', 'user_roles', 'priority', 'requirement']
@@ -43,22 +53,14 @@ class PolicyEngineAPI:
                         return jsonify({'error': f'Missing required field: {field}'}), 400
                 
                 # Evaluate task
-                decision = self.engine.evaluate_task(
-                    task_id=data['task_id'],
-                    task_type=data['task_type'],
-                    user_id=data['user_id'],
-                    user_roles=data['user_roles'],
-                    priority=data['priority'],
-                    requirement=data['requirement'],
-                    budget_limit=data.get('budget_limit'),
-                    preferred_regions=data.get('preferred_regions'),
-                    required_compliance=data.get('required_compliance'),
-                )
+                    context = DecisionContext(data)
+                    decision = self.engine.evaluate(context)
+                 
                 
-                return jsonify(decision), 200
+                    return jsonify({ "decision": decision}), 200
             except Exception as e:
-                self.logger.error(f"Error evaluating task: {str(e)}")
-                return jsonify({'error': str(e)}), 500
+                    self.logger.error(f"Error evaluating task: {str(e)}")
+                    return jsonify({'error': str(e)}), 500
         
         @self.app.route('/api/v1/policies', methods=['GET'])
         def list_policies():

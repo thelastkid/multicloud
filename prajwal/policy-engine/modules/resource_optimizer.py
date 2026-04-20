@@ -2,8 +2,8 @@
 from typing import Dict, Any, Tuple
 from dataclasses import dataclass
 
-from ..core.decision_context import DecisionContext
-from ..utils.logger import get_logger
+from core.decision_context import DecisionContext
+from utils.logger import get_logger
 
 
 @dataclass

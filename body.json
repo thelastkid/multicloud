@@ -1,0 +1,24 @@
+{
+  "task_id": "test123",
+  "task_type": "training",
+  "user_id": "user_1",
+  "user_roles": ["admin"],
+
+  "model_name": "resnet50",
+  "dataset": "apple_dataset",
+
+  "epochs": 10,
+  "batch_size": 32,
+
+  "gpu_count": 1,
+  "gpu_type": "nvidia-tesla-t4",
+  "memory_gb": 16,
+
+  "priority": "high",
+  "requirement": "training job",
+
+  "preferred_regions": ["us-east-1"],
+  "budget_limit": 100,
+
+  "image_path": "C:/Users/priya/multicloud/priyanka/color/Apple___healthy/4aaa2349-eed7-48ed-a96c-02c313ee2d68___RS_HL 5911.JPG"
+}
