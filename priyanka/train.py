@@ -44,6 +44,6 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 model.fit(train_data, validation_data=val_data, epochs=5)
 
 # Save model
-model.save("model.h5")
+model.save("plant_model.keras")
 
 print("Model trained and saved!")
