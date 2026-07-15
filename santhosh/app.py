@@ -6,8 +6,8 @@ import io
 
 app = FastAPI()
 
-# Load your model (assuming you saved it as 'plant_model.keras')
-model = tf.keras.models.load_model('plant_model.keras')
+# Load your model (assuming you saved it as 'plant_model.h5')
+model = tf.keras.models.load_model('plant_model.h5')
 class_names = ['Apple___healthy', 'Corn___unhealthy', 'Potato___healthy'] # Add all your classes
 
 @app.post("/predict")
