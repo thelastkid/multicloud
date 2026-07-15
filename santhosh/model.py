@@ -4,7 +4,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 
 # Load trained model
-model = load_model(os.path.join(os.path.dirname(__file__), "plant_model.h5"))
+model = load_model(os.path.join(os.path.dirname(__file__), "plant_model.keras"))
 
 # Class names (IMPORTANT)
 class_names = ["Apple___Black_rot", "Apple___healthy"]
