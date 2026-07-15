@@ -8,7 +8,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app.py .
-COPY plant_model.h5 .
+COPY model.py .
+COPY plant_model.keras .
 
 EXPOSE 8000
 
