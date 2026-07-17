@@ -17,7 +17,13 @@ def predict(img_path):
     img_array = img_array / 255.0
 
     # Predict
-    prediction = model.predict(img_array)
+    prediction = model.predict(img_array, verbose=0)
+
+    print("Raw prediction:", prediction)
+
     index = np.argmax(prediction)
+
+    print("Predicted index:", index)
+    print("Predicted class:", class_names[index])
 
     return class_names[index]

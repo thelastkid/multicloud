@@ -1,23 +1,20 @@
-import tensorflow as tf
 from fastapi import FastAPI, File, UploadFile
-import numpy as np
-from PIL import Image
-import io
+from model import predict
+import shutil
+import os
 
 app = FastAPI()
 
-# Load your model (assuming you saved it as 'plant_model.keras')
-model = tf.keras.models.load_model('plant_model.keras')
-class_names = ['Apple___healthy', 'Corn___unhealthy', 'Potato___healthy'] # Add all your classes
+UPLOAD_DIR = "uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.post("/predict")
-async def predict(file: UploadFile = File(...)):
-    # Read and preprocess the image
-    image_data = await file.read()
-    img = Image.open(io.BytesIO(image_data)).resize((224, 224))
-    img_array = np.expand_dims(tf.keras.preprocessing.image.img_to_array(img) / 255.0, axis=0)
-    
-    # Predict
-    prediction = model.predict(img_array)
-    result = class_names[np.argmax(prediction)]
+async def predict_image(file: UploadFile = File(...)):
+    file_path = os.path.join(UPLOAD_DIR, file.filename)
+
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    result = predict(file_path)
+
     return {"prediction": result}
