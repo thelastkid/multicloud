@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: cost-optimizer
+  namespace: mlops
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: cost-optimizer
+
+  template:
+    metadata:
+      labels:
+        app: cost-optimizer
+
+    spec:
+      containers:
+        - name: cost-optimizer
+          image: cost-optimizer-service:latest
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 8003

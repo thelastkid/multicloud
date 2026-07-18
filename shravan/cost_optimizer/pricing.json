@@ -1,0 +1,22 @@
+{
+    "AWS": {
+        "cpu_cost": 2.50,
+        "memory_cost": 1.20,
+        "gpu_cost": 8.00,
+        "regions": ["India", "US", "Europe"]
+    },
+
+    "Azure": {
+        "cpu_cost": 2.30,
+        "memory_cost": 1.10,
+        "gpu_cost": 7.50,
+        "regions": ["India", "Europe"]
+    },
+
+    "GCP": {
+        "cpu_cost": 2.10,
+        "memory_cost": 1.30,
+        "gpu_cost": 0.00,
+        "regions": ["US", "Europe"]
+    }
+}

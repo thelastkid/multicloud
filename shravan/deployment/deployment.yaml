@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: plant-api
+  namespace: mlops
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: plant-api
+
+  template:
+    metadata:
+      labels:
+        app: plant-api
+
+    spec:
+      containers:
+        - name: plant-api
+          image: plant-api:latest
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 8000

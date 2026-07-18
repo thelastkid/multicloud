@@ -1,0 +1,5 @@
+{
+    "policy_engine": "http://policy-engine-service",
+    "cost_optimizer": "http://cost-optimizer-service",
+    "scheduler": "http://scheduler-service"
+}
