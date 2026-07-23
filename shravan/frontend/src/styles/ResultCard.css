@@ -1,0 +1,46 @@
+.result-card {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.status {
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.success {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.result-section h3 {
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.result-section p {
+    color: #475569;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+td:last-child {
+    text-align: right;
+    font-weight: 600;
+}
+
+.failed {
+    background: #fee2e2;
+    color: #b91c1c;
+}

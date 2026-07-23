@@ -10,13 +10,13 @@
         "cpu_cost": 2.30,
         "memory_cost": 1.10,
         "gpu_cost": 7.50,
-        "regions": ["India", "Europe"]
+        "regions": ["India", "Europe","US"]
     },
 
     "GCP": {
         "cpu_cost": 2.10,
         "memory_cost": 1.30,
-        "gpu_cost": 0.00,
-        "regions": ["US", "Europe"]
+        "gpu_cost": 6.00,
+        "regions": ["US", "Europe","India"]
     }
 }

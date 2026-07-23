@@ -1,5 +1,5 @@
 {
-    "policy_engine": "http://policy-engine-service",
-    "cost_optimizer": "http://cost-optimizer-service",
-    "scheduler": "http://scheduler-service"
+  "policy_engine": "http://localhost:8001",
+  "cost_optimizer": "http://localhost:8002",
+  "scheduler": "http://localhost:8003"
 }

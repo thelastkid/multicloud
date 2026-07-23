@@ -1,0 +1,40 @@
+.deployment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.deployment-form label {
+    font-weight: 600;
+    color: #334155;
+}
+
+.deployment-form input,
+.deployment-form select {
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.deployment-form input:focus,
+.deployment-form select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.deployment-form button {
+    margin-top: 15px;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.deployment-form button:hover {
+    background: #1d4ed8;
+}

@@ -1,14 +1,26 @@
-from fastapi import FastAPI
+import logging
+
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 from gateway import process_request
+from fastapi.middleware.cors import CORSMiddleware
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="API Gateway",
     description="Entry point for the Multi-Cloud Infrastructure platform.",
     version="1.0.0"
 )
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class DeploymentRequest(BaseModel):
     application: str
@@ -19,7 +31,30 @@ class DeploymentRequest(BaseModel):
     priority: str
 
 
+@app.get("/health")
+def health():
+    return {
+        "status": "healthy",
+        "service": "api-gateway"
+    }
+
+
 @app.post("/deploy")
 def deploy(request: DeploymentRequest):
 
-    return process_request(request.model_dump())
+    logger.info("Received deployment request.")
+
+    try:
+        result = process_request(request.model_dump())
+
+        logger.info("Deployment request processed successfully.")
+
+        return result
+
+    except Exception as e:
+        logger.exception("Deployment request failed.")
+
+        raise HTTPException(
+            status_code=500,
+            detail=f"Deployment failed: {str(e)}"
+        )
