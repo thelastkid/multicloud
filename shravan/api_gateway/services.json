@@ -1,5 +1,5 @@
 {
-  "policy_engine": "http://localhost:8001",
-  "cost_optimizer": "http://localhost:8002",
-  "scheduler": "http://localhost:8003"
+  "policy_engine": "https://multicloud-pe.onrender.com",
+  "cost_optimizer": "https://multicloud-co.onrender.com",
+  "scheduler": "https://multicloud-sc.onrender.com"
 }
