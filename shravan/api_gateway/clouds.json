@@ -1,0 +1,17 @@
+{
+    "AWS": {
+        "regions": ["India", "US", "Europe"],
+        "gpu": true,
+        "performance_score": 5
+    },
+    "Azure": {
+        "regions": ["India", "Europe","US"],
+        "gpu": true,
+        "performance_score": 4
+    },
+    "GCP": {
+        "regions": ["US", "Europe","India"],
+        "gpu": false,
+        "performance_score": 3
+    }
+}
